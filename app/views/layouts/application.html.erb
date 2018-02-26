@@ -10,6 +10,9 @@
 
   <body>
     <h1>Linkly</h1>
+    <% if user_signed_in? %>
+      <p>Current logged in as: <%= current_user.email %></p>
+    <% end %>
     <%= yield %>
   </body>
 </html>
