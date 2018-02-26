@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 RSpec.feature "Creating a custom short link" do
-  let(:long_url) { "http://ryanbigg.com/2016/04/hiring-juniors" }
+  let(:long_url) { "https://ryanbigg.com/2016/04/hiring-juniors" }
   let(:custom_url) { "juniors" }
 
   it "successfully creates custom short link" do
