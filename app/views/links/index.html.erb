@@ -1,18 +1,28 @@
 <%= form_for(@link) do |f| %>
   <%= f.label :long_url, "Long URL" %>
   <%= f.text_field :long_url  %>
-  <%= f.submit "Shorten" %>
+  <div id="custom-url">
+    <%= f.label :short_url, "Short URL" %>
+    <%= f.text_field :short_url %>
+  </div>
+  <div>
+    <%= f.submit "Shorten" %>
+  </div>
 <% end %>
 
-<% if flash[:notice] %>
- <div id="notice"><%= flash[:notice] %></div>
-<% end %>
+<button id="customize" onClick="showCustomUrl()" >Custom</button>
 
 <% if @shortened_link %>
   Short link successfully created <%= link_to add_domain << @shortened_link.short_url, @shortened_link.long_url %>
 <% end %> 
 
-
-
-
+<% if flash[:error] %>
+  <div>
+    <ul>
+      <% flash[:error].each do |msg| %>
+        <%= content_tag :li, msg, :id => "error_#{msg}" if msg.is_a?(String) %>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
 

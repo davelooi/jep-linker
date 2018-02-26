@@ -1,18 +1,21 @@
 require 'spec_helper'
 
 RSpec.describe Services::Url do
-  long_url = "https://www.config.com"
+  long_url = "http://www.ryanbigg.com"
+  short_url = "xXx"
+  empty_short_url = ""
+  link_params = {long_url: long_url, short_url: empty_short_url}
   before(:each) do
     @url_shortener = described_class
-    @url = "www.google.com"
-    @shortened_url = @url_shortener.set_url(url: @url)
+    url = "www.google.com"
+    @shortened_url = @url_shortener.set_url(url: url)
   end
 
   describe "Url" do
     context "given a long url" do
       it "provides a shorter URL" do
-        url_length = long_url.length
-        expect(@url_shortener.find_or_create(long_url: long_url).short_url.length).to be < url_length
+        url_length = link_params[:long_url].length
+        expect(@url_shortener.find_or_create(link_params).short_url.length).to be < url_length
       end
     end
 
@@ -29,9 +32,10 @@ RSpec.describe Services::Url do
         expect(@shortened_url.path).to eq('')
       end
     end
-    describe "build_url_string" do
-      it "builds full path as string" do
-        expect(@url_shortener.build_url_string(@shortened_url)).to eq("http://www.google.com")
+
+    context "given a short url" do
+      it "checks to see if it already exists" do
+        expect(@url_shortener.custom_url(long_url: long_url, short_url: short_url).short_url).to eq("xXx")
       end
     end
   end

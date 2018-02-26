@@ -4,6 +4,7 @@ RSpec.describe Link, type: :model do
   subject { described_class.new }
   it "is valid with valid attributes" do
     subject.long_url = "https://www.sdjskdskdjskdjskdjskdjskdjskdjskdmxsdskjdskd.com"
+    subject.short_url = "ssd2233"
     expect(subject).to be_valid
   end
 
