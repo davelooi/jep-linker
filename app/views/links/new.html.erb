@@ -13,10 +13,13 @@
 
 <% if @links.any? %>
   <div>
-      <h3>Your links</h3>
+      <h3>Your <%= "link".pluralize(@links.count) %></h3>
       <ul>
         <% @links.each do |link| %>
-          <li><%= link_to "#{root_url + link.short_url}", "/#{link.short_url}" %></li>
+          <li>
+            <%= link_to "#{root_url + link.short_url}", "/#{link.short_url}" %>
+            [<%= link_to "remove", link_path(link.id), method: "delete" %>]
+          </li>
         <% end %>
       </ul>
   </div>
