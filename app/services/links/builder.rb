@@ -1,9 +1,17 @@
 module Links
   module Builder
-    def self.find_or_create(link_params)
+    def self.find_or_create(link_params, user)
       long_url = format_long_url(link_params[:long_url])
       link = Link.find_by(long_url: long_url, is_custom_url: false)
-      link || Link.create(short_url: link_params[:short_url], long_url: long_url)
+      link || create_new_link(link_params, long_url, user)
+    end
+
+    def self.create_new_link(link_params, long_url, user)
+      if user
+        user.links.create(short_url: link_params[:short_url], long_url: long_url)
+      else
+        Link.create(short_url: link_params[:short_url], long_url: long_url)
+      end
     end
 
     def self.format_long_url(long_url)

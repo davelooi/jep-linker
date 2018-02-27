@@ -2,6 +2,8 @@ class Link < ApplicationRecord
   before_save :build_short_url, on: :create
   before_save { long_url.downcase! }
 
+  belongs_to :user, optional: true
+
   validate :not_a_shortening_service
   validates :long_url,
             format: { with: /\A#{URI::regexp(%w(http https))}\z/,

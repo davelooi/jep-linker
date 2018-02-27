@@ -1,19 +1,20 @@
 class LinksController < ApplicationController
+  def show
+    @link = Link.find(params[:id])
+  end
+
   def new
     @link = Link.new
   end
 
   def create
-    @link = Links::Builder.find_or_create(link_params)
+    # @link = current_user.links.create(link_params)
+    @link = Links::Builder.find_or_create(link_params, current_user)
     if @link.valid?
       redirect_to @link
     else
       render 'new'
     end
-  end
-
-  def show
-    @link = Link.find(params[:id])
   end
 
   def forward
