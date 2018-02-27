@@ -5,10 +5,10 @@ class LinksController < ApplicationController
 
   def new
     @link = Link.new
+    @links = user_signed_in? ? current_user.links : []
   end
 
   def create
-    # @link = current_user.links.create(link_params)
     @link = Links::Builder.find_or_create(link_params, current_user)
     if @link.valid?
       redirect_to @link
