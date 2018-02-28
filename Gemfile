@@ -37,6 +37,9 @@ gem 'addressable'
 # To enable url validations
 gem 'validate_url'
 
+# To enable user authentication
+gem 'devise'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
@@ -58,6 +61,7 @@ end
 
 group :test do
   gem 'capybara-selenium'
+  gem 'launchy'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
