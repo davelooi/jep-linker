@@ -11,7 +11,7 @@ class LinksController < ApplicationController
     @link = CreateLink.short_link_from_existing_link(long_url, user_chosen_short_url)
     if @link.save
       flash.now[:notice] = "Your link was shortened to: #{@link.short_url}"
-      redirect_to action: "show", id: @link.id # why not @link??
+      redirect_to action: "show", id: @link.id
     else
       flash.now[:alert] = "Link could not be created."
       render :index

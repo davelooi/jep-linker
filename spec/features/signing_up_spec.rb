@@ -2,7 +2,7 @@ require 'rails_helper'
 
 # User visits sign up route
 # User enters email + password
-# clicks ?
+# clicks submit
 # Sees "you have signed up
 RSpec.feature "signing up" do
   scenario "signs up" do
