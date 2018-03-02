@@ -4,6 +4,8 @@ class Link < ApplicationRecord
   validates :long_url, presence: true, url: true, linkOrigin: true
   validates :short_url, uniqueness: true, linkOrigin: true
 
+  belongs_to :user, optional: true
+
   def create_uniq_short_url
     self.short_url = create_short_url
     if Link.where(short_url: short_url).exists?
