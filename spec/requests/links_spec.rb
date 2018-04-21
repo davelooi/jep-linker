@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "/api/links" do
+RSpec.describe "GET /api/links" do
   it "returns only the user's link and not anonymous_user's link" do
     user = FactoryBot.create(:user, api_key: 'abc123')
     user_link = user.links.create!(long_url: "http://ryanbigg.com/2016/04/hiring-juniors", short_url: "abc123")
@@ -22,5 +22,13 @@ RSpec.describe "/api/links" do
     get "/api/links", params: {}, headers: { 'Authorization' => 'Bearer unknown_key' }
     expect(response.status).to eq(401)
     expect(JSON.parse(response.body)).to eq({"error" => "Unauthorized"})
+  end
+end
+
+RSpec.describe "POST /api/links" do
+  it "allows anonymouse users to create a link" do
+    post "/api/links", params: {link: {long_url: "http://google.com", short_url: "abc123"}}
+    # expect(link).to eq()
+    expect(response.status).to eq(200)
   end
 end

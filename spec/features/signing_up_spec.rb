@@ -11,7 +11,7 @@ RSpec.feature "signing up" do
     fill_in 'Password', with: 'jep_password'
     fill_in 'Password confirmation', with: 'jep_password'
     click_button "Sign up"
-    expect(page).to have_content("Hello, example@example.com")
+    expect(page).to have_content("Welcome, example@example.com")
   end
 
   scenario "user leaves email blank" do

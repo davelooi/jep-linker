@@ -8,4 +8,8 @@ class Api::LinksController < ApplicationController
      render(status: 401, json: { error: "Unauthorized" })
     end
   end
+
+  def create
+    render(json: {}, status: 200)
+  end
 end
