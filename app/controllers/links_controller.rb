@@ -8,7 +8,7 @@ class LinksController < ApplicationController
   def create
     long_url = params[:link][:long_url]
     user_chosen_short_url = params[:link][:short_url]
-    @link = CreateLink.short_link_from_existing_link(long_url, user_chosen_short_url)
+    @link = CreateLink.short_link_from_existing_link(long_url, user_chosen_short_url, current_user)
     if @link.save
       flash.now[:notice] = "Your link was shortened to: #{@link.short_url}"
       redirect_to action: "show", id: @link.id

@@ -26,7 +26,7 @@ RSpec.describe "GET /api/links" do
 end
 
 RSpec.describe "POST /api/links" do
-  it "allows anonymouse users to create a link" do
+  it "allows anonymous users to create a link" do
     post "/api/links", params: {link: {long_url: "http://google.com", short_url: "abc123"}}
     # expect(link).to eq()
     expect(response.status).to eq(200)

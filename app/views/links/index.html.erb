@@ -1,1 +1,10 @@
 <%= render 'form'%>
+<% if current_user %>
+<%= current_user.links.count %>
+  <h2> Your link(s):</h2>
+  <ul>
+  <% current_user.links.each do |link| %>
+    <li><%= "#{link.long_url}, #{link.short_url}" %></li>
+  <% end %>
+  </ul>
+<% end %>

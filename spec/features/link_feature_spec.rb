@@ -80,3 +80,15 @@ RSpec.feature "When user inputs another short-link service link into short-url" 
     expect(page).to have_content("is already a shortened URL")
   end
 end
+
+RSpec.feature "When user is signed in" do
+  scenario "the link is accociated with that user" do
+    user = FactoryBot.create(:user, api_key: 'abc123')
+    sign_in(user)
+    visit_fill_click_link
+    link = Link.first
+    expect(link.user).to eq(user)
+    expect(user.links.count).to eq(1)
+    expect(user.links.target).to eq("http://ryanbigg.com/2016/04/hiring-juniors")
+  end
+end

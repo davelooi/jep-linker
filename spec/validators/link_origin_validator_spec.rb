@@ -7,6 +7,6 @@ RSpec.describe "Link validator" do
 
     expect(
       link.errors[:long_url]
-    ).to include?('is already a shortened URL')
+    ).to include('is already a shortened URL')
   end
 end
