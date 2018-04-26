@@ -6,5 +6,15 @@
 //
 // To reference this file, add <%= javascript_pack_tag 'application' %> to the appropriate
 // layout file, like app/views/layouts/application.html.erb
+import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
+import WebpackerReact from 'webpacker-react';
+console.log('Hello World from Webpacker');
 
-console.log('Hello World from Webpacker')
+class App extends Component {
+  render() {
+    <h1> Hello there </h1>;
+  }
+}
+
+WebpackerReact.register(App);
